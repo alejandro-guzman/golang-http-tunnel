@@ -40,6 +40,9 @@ func (t *httpTunnel) Dial(network, addr string) (c net.Conn, err error) {
 		Host:   addrURL.Host,
 	}
 
+	// nc proxy 3128
+	// CONNECT dest port HTTP/1.1
+
 	fmt.Printf("request: %+v\n", request)
 
 	// send request through connection
@@ -86,7 +89,7 @@ func main() {
 	usr, _ := user.Current()
 	dir := usr.HomeDir
 	privateKey := filepath.Join(dir, ".ssh", "id_rsa")
-	fmt.Printf("SSH key: %s\n", privateKey)
+	// fmt.Printf("SSH key: %s\n", privateKey)
 
 	// register the custom http tunnel dialer
 	proxy.RegisterDialerType("http", getHTTPTunnel)
